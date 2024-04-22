@@ -40,7 +40,8 @@ defmodule Mix.Tasks.Compile.Rambo do
   @filename @filenames[target]
 
   def find_rambo do
-    Path.join(:code.priv_dir(:rambo), @filename)
+    System.get_env("RAMBO_PATH") ||
+      Path.join(:code.priv_dir(:rambo), @filename)
   end
 
   def run(["all"]) do
